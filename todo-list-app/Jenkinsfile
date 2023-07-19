@@ -22,7 +22,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/pankajkumarlinux/kube_terraform-4thWeekOfCloudOps.git -b main"
+                            git "https://github.com/pankajkumarlinux/kube_terraform-4thWeekOfCloudOps.git"
                         }
                     }
                 }
