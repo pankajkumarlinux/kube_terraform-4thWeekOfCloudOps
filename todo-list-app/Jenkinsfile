@@ -22,7 +22,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/pankajkumarlinux/kube_terraform-4thWeekOfCloudOps.git"
+                            git clone "https://github.com/pankajkumarlinux/kube_terraform-4thWeekOfCloudOps.git"
                         }
                     }
                 }
@@ -36,7 +36,6 @@ pipeline {
             }
             
             steps {
-                sh 'cd terraform && ls -ltr'
                 sh 'terraform init -input=false'
                 sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
 
