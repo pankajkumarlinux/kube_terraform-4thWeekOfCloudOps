@@ -20,7 +20,7 @@ pipeline {
         stage('checkout') {
             steps {
                  script{
-                        dir("terraform")
+                        dir("todo-list-app")
                         {
                             git "https://github.com/pankajkumarlinux/kube_terraform-4thWeekOfCloudOps.git"
                         }
