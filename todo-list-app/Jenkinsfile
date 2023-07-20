@@ -45,11 +45,11 @@ pipeline {
             
             steps {
                 
-                sh 'terraform -chdir="./todo-list-app" init -input=false'
+                sh 'terraform -chdir='./todo-list-app' init -input=false'
                 sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
 
-                sh "terraform -chdir="./todo-list-app" plan -input=false -out tfplan "
-                sh "terraform -chdir="./todo-list-app" show -no-color tfplan > tfplan.txt"
+                sh "terraform plan -input=false -out tfplan "
+                sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
@@ -82,7 +82,7 @@ pipeline {
             }
             
             steps {
-                sh "terraform -chdir="./todo-list-app" apply -input=false tfplan"
+                sh "terraform apply -input=false tfplan"
             }
         }
         
@@ -92,7 +92,7 @@ pipeline {
             }
         
         steps {
-           sh "terraform -chdir="./todo-list-app" destroy --auto-approve"
+           sh "terraform destroy --auto-approve"
         }
         }
         
