@@ -19,12 +19,10 @@ pipeline {
         
         stage('checkout') {
             steps {
-                 script{
-                        dir("terraform")
-                        {
-                            git "https://github.com/pankajkumarlinux/kube_terraform-4thWeekOfCloudOps.git"
-                        }
-                    }
+                
+                git branch: 'main', credentialsId: 'gitdevssh', url: 'git@github.com:pankajkumarlinux/kube_terraform-4thWeekOfCloudOps.git'
+            
+                 
                 }
             }
 
