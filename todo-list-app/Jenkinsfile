@@ -49,7 +49,7 @@ pipeline {
                 sh 'cd todo-list-app && terraform workspace select ${environment} || terraform workspace new ${environment}'
 
                 sh "cd todo-list-app && terraform plan -input=false -out tfplan "
-                sh 'cd todo-list-app && terraform show -no-color tfplan > tfplan.txt'
+                sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
@@ -82,7 +82,7 @@ pipeline {
             }
             
             steps {
-                sh "terraform apply -input=false tfplan"
+                sh "cd todo-list-app && terraform apply -input=false tfplan"
             }
         }
         
@@ -92,7 +92,7 @@ pipeline {
             }
         
         steps {
-           sh "terraform destroy --auto-approve"
+           sh "cd todo-list-app && terraform destroy --auto-approve"
         }
         }
         
