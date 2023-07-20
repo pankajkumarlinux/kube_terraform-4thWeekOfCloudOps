@@ -44,12 +44,12 @@ pipeline {
             }
             
             steps {
-                sh 'cd todo-list-app'
-                sh 'ls -ltr && terraform init -input=false'
-                sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
+                
+                sh 'cd todo-list-app && terraform init -input=false'
+                sh 'cd todo-list-app && terraform workspace select ${environment} || terraform workspace new ${environment}'
 
-                sh "terraform plan -input=false -out tfplan "
-                sh 'terraform show -no-color tfplan > tfplan.txt'
+                sh "cd todo-list-app && terraform plan -input=false -out tfplan "
+                sh 'cd todo-list-app && terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
