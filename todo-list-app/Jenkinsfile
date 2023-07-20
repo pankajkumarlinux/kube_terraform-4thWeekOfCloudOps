@@ -49,7 +49,7 @@ pipeline {
                 sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
 
                 sh "terraform -chdir="./todo-list-app" plan -input=false -out tfplan "
-                sh 'terraform -chdir="./todo-list-app" show -no-color tfplan > tfplan.txt'
+                sh "terraform -chdir="./todo-list-app" show -no-color tfplan > tfplan.txt"
             }
         }
         stage('Approval') {
