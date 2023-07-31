@@ -11,7 +11,7 @@ module "VPC" {
   PRI_SUB_4_B_CIDR = var.PRI_SUB_4_B_CIDR
 }
 
-cretea NAT-NAT-GW
+#create NAT-NAT-GW
 module "NAT-GW" {
   source = "../modules/nat-gw"
 
@@ -23,11 +23,13 @@ module "NAT-GW" {
   PRI_SUB_4_B_ID = module.VPC.PRI_SUB_4_B_ID
 }
 
-
+#create a IAM
 module "IAM" {
   source = "../modules/IAM"
   PROJECT_NAME = var.PROJECT_NAME
 }
+
+# Create a EKS
 
 module "EKS" {
   source               = "../modules/EKS"
@@ -39,7 +41,7 @@ module "EKS" {
   PRI_SUB_4_B_ID       = module.VPC.PRI_SUB_4_B_ID
 }
 
-
+#Create a NODE_GROUP
 module "NODE_GROUP" {
   source           = "../modules/Node-group"
   EKS_CLUSTER_NAME = module.EKS.EKS_CLUSTER_NAME
